@@ -6,7 +6,9 @@ void Display();
 void InsertAtBeg();
 void InsertAtEnd();
 void InsertAfterpos();
-
+void DeleteAtBeg();
+void DeleteAtEnd();
+void DeleteSpecNod();
 
 struct node
 {
@@ -28,6 +30,9 @@ int main()
 	cout<<"3 Insert At Begining"<<endl;
 	cout<<"4 Insert At End"<<endl;
 	cout<<"5 Insert After Specific Element"<<endl;
+	cout<<"6 Delete Begining Node"<<endl;
+	cout<<"7 Delete END Node"<<endl;
+	cout<<"8 Delete Specific Node"<<endl;
 	cin>>choice;
 	switch(choice)
 	{
@@ -45,7 +50,16 @@ int main()
 			    break;
 		case 5:
 			    InsertAfterpos();
-			    break;						    
+			    break;						
+		case 6: 
+		        DeleteAtBeg();
+		      	break;	
+	  case 7: 
+		        DeleteAtEnd();
+				break;	
+      case 8: 
+		        DeleteSpecNod();
+				break;				    	    
 		default:
 				cout<<"wrong choice";	    
 	}
@@ -56,7 +70,7 @@ int main()
 void accNodeData()
 {
 		newnode= new node();
-		cout<<"Enter Node Element";
+		cout<<"Enter Node Element"<<endl;
 		cin>>newnode->data;
 		newnode->next=NULL;
 		newnode->prev=NULL;
@@ -82,7 +96,7 @@ void Display()
 {
 	if(head==NULL)
 	{
-		cout<<"List is empty";
+		cout<<"List is empty"<<endl;
 	}
 	else
 	{
@@ -109,7 +123,7 @@ void InsertAtBeg()
 		head->prev=newnode;
 		head=newnode;
 	}
-	cout<<"Node added at Begining";
+	cout<<"Node added at Begining"<<endl;
 }
 void InsertAtEnd()
 {
@@ -127,21 +141,77 @@ void InsertAtEnd()
 	
 }
 void InsertAfterpos()
-{
+{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	int data;
-	cout<<"Enter Element to add after new Node";
+	cout<<"Enter Element to add after new Node"<<endl;
 	cin>>data;
 	accNodeData();
 	
 	temp=head;
-	if(temp->data!=data)
+	while(temp->data!=data)
 	{
 		temp=temp->next;
 	}
 	//temp=temp->next;
 	newnode->next=temp->next;
-	temp->next->prev=temp;
+	temp->next->prev=newnode;
+	newnode->prev=temp;
 	temp->next=newnode;
-	temp=newnode;
+	
 	
 }
+void DeleteAtBeg()
+{
+	temp=head;
+	if(head==NULL)
+	{
+		cout<<"List is empty"<<endl;	
+	}
+	else{
+	
+	head=temp->next;
+	head->prev=NULL;
+	delete(temp);
+	cout<<"First Node Deleted"<<endl;
+   }
+}
+
+void DeleteAtEnd()
+{
+
+	if(head==NULL)
+	{
+		cout<<"List is empty"<<endl;	
+	}
+else{
+	    temp=tail;
+		tail=temp->prev;
+		tail->next=NULL;
+	    delete(temp);
+	cout<<"Last Node Deleted"<<endl;
+   }
+}             
+void DeleteSpecNod()
+{
+		int data;
+	cout<<"Enter data to want delete"<<endl;
+	cin>>data;
+	
+	if(head==NULL)
+	{
+		cout<<"list is empty"<<endl;	
+	}
+	else
+	{
+		temp=head;
+		while(temp->data!=data)
+		{
+			temp=temp->next;
+		}
+		temp->prev->next=temp->next;
+		temp->next->prev=temp->prev;
+		delete(temp);	
+		
+		cout<<"NODE DELETED"<<endl<<endl<<endl;
+	}	
+}         
