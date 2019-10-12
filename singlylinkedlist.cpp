@@ -9,6 +9,7 @@ void InsertAtSpecificPos();
 void DeleteAtBe();
 void DeleteAtEnd();
 void DeleteAtSpec();
+void reverse();
 struct node
 {
 	int data;
@@ -29,6 +30,7 @@ int main()
 	cout<<"6 DELETE Node at Beginnig"<<endl;
 	cout<<"7 DELETE Node at Beginnig"<<endl;
 	cout<<"8 DELETE Specific Node "<<endl;
+	cout<<"9 Reverse String "<<endl;
 	cout<<"0 Exit"<<endl;
 	cin>>choice;
 	switch(choice)
@@ -56,7 +58,10 @@ int main()
 				break;
 		case 8:
 				DeleteAtSpec();
-				break;										
+				break;
+		case 9:
+				reverse();
+				break;													
 		default :
 				cout<<"wrong Choice"<<endl;							   
 	}
@@ -66,7 +71,7 @@ void CreateNode()
 {
 	int a;
      	do{
-		//newnode =(struct node*) malloc(sizeof(struct node));
+	//	newnode =(struct node*) malloc(sizeof(struct node));
 		newnode= new node();
 		cout<<"Enter New Node data"<<endl;
 		cin>>newnode->data;
@@ -90,14 +95,14 @@ void DisplayElement()
 	cout<<"Node Elements"<<endl;
 	while(temp!=NULL)
 	{
-		cout<<temp->data<<" ";
+		cout<<"|"<<temp->data<<"|"<<temp->next<<"|"<<"  " ;
 		temp=temp->next;
 	}
 	cout<<endl<<endl;
 }
 void InsertAtBegining()
 {
-	newnode =(struct node*) malloc(sizeof(struct node));
+		newnode= new node();
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;
 		
@@ -106,7 +111,7 @@ void InsertAtBegining()
 }
 void InsertAtEnd()
 {
-	   newnode =(struct node*) malloc(sizeof(struct node));
+		newnode= new node();
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;
 		newnode->next=NULL;	
@@ -134,7 +139,8 @@ void InsertAtSpecificPos()
 	{
 	   temp=temp->next;		
 	}
-		newnode =(struct node*) malloc(sizeof(struct node));
+		//newnode =(struct node*) malloc(sizeof(struct node));
+	    newnode= new node();
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;	
 		newnode->next=temp->next;
@@ -172,12 +178,14 @@ void DeleteAtEnd()
 		if(temp==head)
 		{
 			head=NULL;
+				free(temp);
 		}
 		else{
 		
 		  prevnode->next=NULL;
+		  	free(temp);
 	   }
-		free(temp);
+	
 		cout<<"End NODE DELETED"<<endl<<endl<<endl;
 	}	
 }
@@ -186,7 +194,6 @@ void DeleteAtSpec()
 	int data;
 	cout<<"Enter data to want delete";
 	cin>>data;
-	
 	if(head==NULL)
 	{
 		cout<<"list is empty"<<endl;	
@@ -201,10 +208,23 @@ void DeleteAtSpec()
 		}
 		prevnode->next=temp->next;
 		free(temp);	
-		
 		cout<<"NODE DELETED"<<endl<<endl<<endl;
 	}	
 	
 }	
+void reverse()
+{
+	struct node *nextnode=NULL, *currentnode=NULL;
+	prevnode=NULL;
+	currentnode=nextnode=head;
+	while(nextnode!=NULL)
+	{
+		nextnode=nextnode->next;
+		currentnode->next=prevnode;
+		prevnode=currentnode;
+		currentnode=nextnode;
+	}
+	head=prevnode;
+}
 	
 	
