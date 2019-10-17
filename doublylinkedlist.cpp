@@ -69,7 +69,7 @@ int main()
 }
 void accNodeData()
 {
-		newnode= new node();
+		newnode= new node;
 		cout<<"Enter Node Element"<<endl;
 		cin>>newnode->data;
 		newnode->next=NULL;
