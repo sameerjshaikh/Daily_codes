@@ -72,7 +72,7 @@ void CreateNode()
 	int a;
      	do{
 	//	newnode =(struct node*) malloc(sizeof(struct node));
-		newnode= new node();
+		newnode= new node;
 		cout<<"Enter New Node data"<<endl;
 		cin>>newnode->data;
 		newnode->next=NULL;		
@@ -102,7 +102,7 @@ void DisplayElement()
 }
 void InsertAtBegining()
 {
-		newnode= new node();
+		newnode= new node;
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;
 		
@@ -111,7 +111,7 @@ void InsertAtBegining()
 }
 void InsertAtEnd()
 {
-		newnode= new node();
+		newnode= new node;
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;
 		newnode->next=NULL;	
@@ -140,7 +140,7 @@ void InsertAtSpecificPos()
 	   temp=temp->next;		
 	}
 		//newnode =(struct node*) malloc(sizeof(struct node));
-	    newnode= new node();
+	    newnode= new node;
 		cout<<"Enter data "<<endl;
 		cin>>newnode->data;	
 		newnode->next=temp->next;
