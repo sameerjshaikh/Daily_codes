@@ -157,8 +157,6 @@ void InsertAfterpos()
 	temp->next->prev=newnode;
 	newnode->prev=temp;
 	temp->next=newnode;
-	
-	
 }
 void DeleteAtBeg()
 {
@@ -175,7 +173,6 @@ void DeleteAtBeg()
 	cout<<"First Node Deleted"<<endl;
    }
 }
-
 void DeleteAtEnd()
 {
 
@@ -196,7 +193,6 @@ void DeleteSpecNod()
 		int data;
 	cout<<"Enter data to want delete"<<endl;
 	cin>>data;
-	
 	if(head==NULL)
 	{
 		cout<<"list is empty"<<endl;	
@@ -210,8 +206,7 @@ void DeleteSpecNod()
 		}
 		temp->prev->next=temp->next;
 		temp->next->prev=temp->prev;
-		delete(temp);	
-		
-		cout<<"NODE DELETED"<<endl<<endl<<endl;
-	}	
-}         
+		delete(temp);		
+          	cout<<"NODE DELETED"<<endl<<endl<<endl;
+	}
+}
